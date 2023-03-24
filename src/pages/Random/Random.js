@@ -2,7 +2,7 @@
 const Random = () => {
 
     return(
-        <h1>random</h1>
+        <h1  className="h-100">random</h1>
     );
 };
 

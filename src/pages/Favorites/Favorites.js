@@ -2,7 +2,7 @@
 const Favorites = () => {
 
     return(
-        <h1>favorites</h1>
+        <h1 className="h-100">favorites</h1>
     );
 };
 

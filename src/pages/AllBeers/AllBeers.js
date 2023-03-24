@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Card from "../../components/Card/Card";
 import { getAllBeers } from "../../services/beerServices";
 
 const AllBeers = () => {
@@ -9,9 +10,9 @@ const AllBeers = () => {
 	}, []);
 
 	return (
-		<div>
+		<div className="d-flex flex-wrap justify-content-center">
 			{beers.map((x) => (
-				<p>{x.name}</p>
+				<Card key={x.id} beer={x} />
 			))}
 		</div>
 	);

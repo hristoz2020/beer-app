@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Navigation = () => {
 	return (
-		<nav className="navbar navbar-expand-lg text-light bg-dark">
+		<nav className="navbar navbar-expand-lg text-light bg-dark p-2"> 
 			<Link className="navbar-brand text-light" to="/">
 				Punk API
 			</Link>
