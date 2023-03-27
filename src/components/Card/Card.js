@@ -20,7 +20,7 @@ const Card = ({ beer }) => {
     };
 
 	return (
-		<div className="card w-25 d-flex align-items-center m-4 border border-4">
+		<div className="card w-25 h-25 d-flex align-items-center m-4 border border-4">
 			<img
 				src={beer.image_url}
 				className="beer-img p-4"
