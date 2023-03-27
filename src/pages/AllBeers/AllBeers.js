@@ -25,7 +25,7 @@ const AllBeers = () => {
 	);
 
 	return (
-		<>
+		<div className="min-height-12">
 			<div className="w-25 m-auto p-3">
 				<label className="d-flex align-items-center">
 					<i className="fa fa-search p-2 position-absolute"></i>
@@ -49,7 +49,7 @@ const AllBeers = () => {
 					)}
 				</div>
 			)}
-		</>
+		</div>
 	);
 };
 
