@@ -19,7 +19,7 @@ const Home = () => {
 			<h1 className="text-center">Welcome to beer app !</h1>
 			<div className="d-flex justify-content-center">
 				{isLoading ? (
-					beers.slice(10, 15).map((x) => <Card beer={x} />)
+					beers.slice(10, 15).map((x) => <Card key={x.id} beer={x} />)
 				) : (
 					<Loader />
 				)}

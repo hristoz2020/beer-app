@@ -43,7 +43,7 @@ const AllBeers = () => {
 			) : (
 				<div className="d-flex flex-wrap justify-content-center">
 					{filtredBeers.length > 0 ? (
-						filtredBeers.map((x) => <Card key={x.id} beer={x} />)
+						filtredBeers.map((x) => <Card key={x.id} beer={x} favorite={true} />)
 					) : (
 						<h1>Not found beer !</h1>
 					)}

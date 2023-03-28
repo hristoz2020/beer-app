@@ -2,13 +2,15 @@ import { Link } from "react-router-dom";
 
 const Navigation = () => {
 	return (
-		<nav className="navbar navbar-expand-lg text-light bg-dark p-2"> 
-			<Link className="navbar-brand text-light" to="/">
-				Punk API
-			</Link>
+		<nav className="navbar navbar-expand-lg text-light bg-dark p-2">
+			<div className="">
+				<Link className="navbar-brand text-light" to="/">
+					Punk API
+				</Link>
+			</div>
 
 			<div className="collapse navbar-collapse" id="navbarNav">
-				<ul className="navbar-nav">
+				<ul className="navbar-nav mr-auto">
 					<li className="nav-item active">
 						<Link className="nav-link text-light" to="/">
 							Home

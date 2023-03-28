@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Open from "../../assets/sound/open-beer.mp3";
 
-const Card = ({ beer }) => {
+const Card = ({ beer, favorite }) => {
 	let openSound = new Audio(Open);
 	const openBeer = () => {
 		openSound.play();
@@ -16,8 +16,8 @@ const Card = ({ beer }) => {
 
 	const favoriteBeer = () => {
 		setIsFavorite(checkIsFavorite);
-        //
-    };
+		//
+	};
 
 	return (
 		<div className="card w-25 h-25 d-flex align-items-center m-4 border border-4">
@@ -34,13 +34,15 @@ const Card = ({ beer }) => {
 					<Link to="/" className="btn btn-primary">
 						Details
 					</Link>
-					<button className="border-0" onClick={favoriteBeer}>
-						{checkIsFavorite ? (
-							<i className="fa-regular fa-heart text-danger fs-3"></i>
-						) : (
-							<i className="fa-solid fa-heart text-danger fs-3"></i>
-						)}
-					</button>
+					{favorite && (
+						<button className="border-0" onClick={favoriteBeer}>
+							{checkIsFavorite ? (
+								<i className="fa-regular fa-heart text-danger fs-3"></i>
+							) : (
+								<i className="fa-solid fa-heart text-danger fs-3"></i>
+							)}
+						</button>
+					)}
 				</div>
 			</div>
 		</div>
