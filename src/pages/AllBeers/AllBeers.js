@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import Card from "../../components/Card/Card";
 import { getAllBeers } from "../../services/beerServices";
 import Loader from "../../components/Loader/Loader";
+import { useFavoriteBeers } from "../../contexts/FavoriteBeersContext";
 
 const AllBeers = () => {
 	const [beers, setBeers] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [searchInput, setSearchInput] = useState("");
-
+	const { favoriteBeers } = useFavoriteBeers();
+	console.log(favoriteBeers);
 	useEffect(() => {
 		getAllBeers().then((res) => {
 			setIsLoading(false);
@@ -43,7 +45,7 @@ const AllBeers = () => {
 			) : (
 				<div className="d-flex flex-wrap justify-content-center">
 					{filtredBeers.length > 0 ? (
-						filtredBeers.map((x) => <Card key={x.id} beer={x} favorite={true} />)
+						filtredBeers.map((x) => <Card key={x.id} beer={x} favorite={favoriteBeers} />)
 					) : (
 						<h1>Not found beer !</h1>
 					)}

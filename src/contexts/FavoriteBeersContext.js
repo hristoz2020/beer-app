@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 
 export const AuthContext = createContext();
 
@@ -11,3 +11,9 @@ export const FavoriteBeersContext = ({ children }) => {
 		</AuthContext.Provider>
 	);
 };
+
+export const useFavoriteBeers = () => {
+    const favoriteBeersState = useContext(AuthContext);
+
+    return favoriteBeersState;
+}

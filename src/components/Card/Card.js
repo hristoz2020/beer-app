@@ -16,7 +16,14 @@ const Card = ({ beer, favorite }) => {
 
 	const favoriteBeer = () => {
 		setIsFavorite(checkIsFavorite);
-		//
+
+		if (isFavorite === false) {
+			favorite.push(beer);
+		} else if (isFavorite === true) {
+			let index = favorite.indexOf(beer);
+			favorite.splice(index, 1);
+		}
+		console.log(favorite);
 	};
 
 	return (
