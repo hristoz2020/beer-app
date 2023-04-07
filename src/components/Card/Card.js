@@ -33,21 +33,21 @@ const Card = ({ beer, favorite, beerIsFav }) => {
 					{favorite && (
 						<div className="border-none">
 							{beerIsFav ? (
-								<button
+								<span
 									onClick={() => {
 										removeBeer(beer);
 									}}
 								>
 									<i className="fa-solid fa-heart text-danger fs-3"></i>
-								</button>
+								</span>
 							) : (
-								<button
+								<span
 									onClick={() => {
 										addBeer(beer);
 									}}
 								>
 									<i className="fa-regular fa-heart text-danger fs-3"></i>
-								</button>
+								</span>
 							)}
 						</div>
 					)}

@@ -22,7 +22,7 @@ const AllBeers = () => {
 		setSearchInput(e.target.value);
 	};
 
-	let filtredBeers = beers.filter((beer) =>
+	const filtredBeers = beers.filter((beer) =>
 		beer.name.toLowerCase().includes(searchInput.toLowerCase())
 	);
 
