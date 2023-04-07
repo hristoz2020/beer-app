@@ -46,9 +46,7 @@ const AllBeers = () => {
 				<div className="d-flex flex-wrap justify-content-center">
 					{filtredBeers.length > 0 ? (
 						filtredBeers.map((beer) => {
-							const beerIsFav = favoriteBeers.includes(beer);
-							console.log(favoriteBeers);
-							console.log(beerIsFav);
+							const beerIsFav = favoriteBeers.some(favBeer => favBeer.id === beer.id);
 							return (
 								<Card
 									key={beer.id}

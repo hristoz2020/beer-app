@@ -58,6 +58,3 @@ const Card = ({ beer, favorite, beerIsFav }) => {
 };
 
 export default Card;
-
-// console.log(isFav(beer), "isFav in card comp");
-// const [isFavorite, setIsFavorite] = useState(isFav(beer));
