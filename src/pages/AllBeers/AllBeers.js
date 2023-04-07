@@ -8,8 +8,8 @@ const AllBeers = () => {
 	const [beers, setBeers] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [searchInput, setSearchInput] = useState("");
-	const { favoriteBeers } = useFavoriteBeers();
-	console.log(favoriteBeers);
+	const { favoriteBeers} = useFavoriteBeers();
+
 	useEffect(() => {
 		getAllBeers().then((res) => {
 			setIsLoading(false);
@@ -45,7 +45,19 @@ const AllBeers = () => {
 			) : (
 				<div className="d-flex flex-wrap justify-content-center">
 					{filtredBeers.length > 0 ? (
-						filtredBeers.map((x) => <Card key={x.id} beer={x} favorite={favoriteBeers} />)
+						filtredBeers.map((beer) => {
+							const beerIsFav = favoriteBeers.includes(beer);
+							console.log(favoriteBeers);
+							console.log(beerIsFav);
+							return (
+								<Card
+									key={beer.id}
+									beer={beer}
+									favorite={true}
+									beerIsFav={beerIsFav}
+								/>
+							);
+						})
 					) : (
 						<h1>Not found beer !</h1>
 					)}

@@ -1,30 +1,19 @@
-import { useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import Open from "../../assets/sound/open-beer.mp3";
+import { FaovriteBeerContext } from "../../contexts/FavoriteBeersContext";
 
-const Card = ({ beer, favorite }) => {
+const Card = ({ beer, favorite, beerIsFav }) => {
 	let openSound = new Audio(Open);
 	const openBeer = () => {
 		openSound.play();
 	};
-	const [isFavorite, setIsFavorite] = useState(false);
-	const checkIsFavorite = isFavorite === false ? true : false;
+	const { addBeer, removeBeer } = useContext(FaovriteBeerContext);
+
 	let description =
 		beer.description.length > 90
 			? beer.description.slice(0, 90).concat("...")
 			: beer.description;
-
-	const favoriteBeer = () => {
-		setIsFavorite(checkIsFavorite);
-
-		if (isFavorite === false) {
-			favorite.push(beer);
-		} else if (isFavorite === true) {
-			let index = favorite.indexOf(beer);
-			favorite.splice(index, 1);
-		}
-		console.log(favorite);
-	};
 
 	return (
 		<div className="card w-25 h-25 d-flex align-items-center m-4 border border-4">
@@ -42,13 +31,25 @@ const Card = ({ beer, favorite }) => {
 						Details
 					</Link>
 					{favorite && (
-						<button className="border-0" onClick={favoriteBeer}>
-							{checkIsFavorite ? (
-								<i className="fa-regular fa-heart text-danger fs-3"></i>
+						<div className="border-none">
+							{beerIsFav ? (
+								<button
+									onClick={() => {
+										removeBeer(beer);
+									}}
+								>
+									<i className="fa-solid fa-heart text-danger fs-3"></i>
+								</button>
 							) : (
-								<i className="fa-solid fa-heart text-danger fs-3"></i>
+								<button
+									onClick={() => {
+										addBeer(beer);
+									}}
+								>
+									<i className="fa-regular fa-heart text-danger fs-3"></i>
+								</button>
 							)}
-						</button>
+						</div>
 					)}
 				</div>
 			</div>
@@ -57,3 +58,6 @@ const Card = ({ beer, favorite }) => {
 };
 
 export default Card;
+
+// console.log(isFav(beer), "isFav in card comp");
+// const [isFavorite, setIsFavorite] = useState(isFav(beer));
