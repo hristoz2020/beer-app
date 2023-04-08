@@ -15,8 +15,8 @@ const Random = () => {
 	}, []);
 
 	return (
-		<div className="min-height-12 mt-5 d-flex justify-content-center">
-			{isLoading ? beer.map((x) => <Card key={x.id} beer={x} />) : <Loader />}
+		<div className="min-height-12 pt-5 d-flex justify-content-center">
+			{isLoading ? beer.map((beer) => <Card key={beer.id} beer={beer} />) : <Loader />}
 		</div>
 	);
 };

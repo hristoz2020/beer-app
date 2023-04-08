@@ -15,7 +15,7 @@ const Home = () => {
 	}, []);
 
 	return (
-		<div className="min-height-12">
+		<div className="min-height-12  pt-5">
 			<h1 className="text-center">Welcome to beer app !</h1>
 			<div className="d-flex justify-content-center">
 				{isLoading ? (

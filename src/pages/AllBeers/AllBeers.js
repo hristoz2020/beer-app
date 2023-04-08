@@ -43,7 +43,7 @@ const AllBeers = () => {
 			{isLoading ? (
 				<Loader />
 			) : (
-				<div className="d-flex flex-wrap justify-content-center">
+				<div className="d-flex flex-wrap justify-content-center pt-5">
 					{filtredBeers.length > 0 ? (
 						filtredBeers.map((beer) => {
 							const beerIsFav = favoriteBeers.some(favBeer => favBeer.id === beer.id);
