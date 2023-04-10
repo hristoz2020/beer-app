@@ -1,7 +1,7 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
 import Open from "../../assets/sound/open-beer.mp3";
 import { FavoriteBeerContext } from "../../contexts/FavoriteBeersContext";
+import Modal from "../Modal/Modal";
 
 const Card = ({ beer, favorite, beerIsFav }) => {
 	let openSound = new Audio(Open);
@@ -9,6 +9,16 @@ const Card = ({ beer, favorite, beerIsFav }) => {
 		openSound.play();
 	};
 	const { addBeer, removeBeer } = useContext(FavoriteBeerContext);
+
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
+	const handleShowModal = () => {
+		setIsModalOpen(true);
+	};
+
+	const handleCloseModal = () => {
+		setIsModalOpen(false);
+	};
 
 	let description =
 		beer.description.length > 90
@@ -27,9 +37,23 @@ const Card = ({ beer, favorite, beerIsFav }) => {
 				<h5 className="card-title">{beer.name}</h5>
 				<p className="mb-0">{description}</p>
 				<div className="d-flex justify-content-between align-items-center">
-					<Link to="/" className="btn btn-primary">
+					<button
+						type="button"
+						className="btn btn-primary"
+						onClick={handleShowModal}
+					>
 						Details
-					</Link>
+					</button>
+
+					{isModalOpen && (
+						<div className="modal-background" onClick={handleCloseModal} >
+							<Modal
+								beer={beer}
+								handleCloseModal={handleCloseModal}
+							/>
+						</div>
+					)}
+
 					{favorite && (
 						<div className="border-none">
 							{beerIsFav ? (

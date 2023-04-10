@@ -7,7 +7,7 @@ const Favorites = () => {
 
 	return (
 		<div className="min-height-12 pt-5">
-			<h1 className="h-100 text-center">Favorites</h1>
+			<h1 className="text-center">Favorites</h1>
 			<div className="d-flex flex-wrap align-items-center justify-content-center">
 				{favoriteBeers.map((beer) => {
 					const beerIsFav = favoriteBeers.some(favBeer => favBeer.id === beer.id);
