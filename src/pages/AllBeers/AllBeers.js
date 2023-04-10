@@ -10,8 +10,6 @@ const AllBeers = () => {
 	const [searchInput, setSearchInput] = useState("");
 	const { favoriteBeers } = useContext(FavoriteBeerContext);
 
-	// const { favoriteBeers} = useFavoriteBeers();
-
 	useEffect(() => {
 		getAllBeers().then((res) => {
 			setIsLoading(false);
