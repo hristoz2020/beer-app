@@ -1,14 +1,14 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import Open from "../../assets/sound/open-beer.mp3";
-import { FaovriteBeerContext } from "../../contexts/FavoriteBeersContext";
+import { FavoriteBeerContext } from "../../contexts/FavoriteBeersContext";
 
 const Card = ({ beer, favorite, beerIsFav }) => {
 	let openSound = new Audio(Open);
 	const openBeer = () => {
 		openSound.play();
 	};
-	const { addBeer, removeBeer } = useContext(FaovriteBeerContext);
+	const { addBeer, removeBeer } = useContext(FavoriteBeerContext);
 
 	let description =
 		beer.description.length > 90

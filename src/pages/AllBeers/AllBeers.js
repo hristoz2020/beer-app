@@ -1,14 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Card from "../../components/Card/Card";
 import { getAllBeers } from "../../services/beerServices";
 import Loader from "../../components/Loader/Loader";
-import { useFavoriteBeers } from "../../contexts/FavoriteBeersContext";
+import { FavoriteBeerContext } from "../../contexts/FavoriteBeersContext";
 
 const AllBeers = () => {
 	const [beers, setBeers] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [searchInput, setSearchInput] = useState("");
-	const { favoriteBeers} = useFavoriteBeers();
+	const { favoriteBeers } = useContext(FavoriteBeerContext);
+
+	// const { favoriteBeers} = useFavoriteBeers();
 
 	useEffect(() => {
 		getAllBeers().then((res) => {

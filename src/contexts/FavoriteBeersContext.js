@@ -1,9 +1,10 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 
-export const FaovriteBeerContext = createContext();
+export const FavoriteBeerContext = createContext();
 
 export const FavoriteBeersContext = ({ children }) => {
 	const [favoriteBeers, setFavoriteBeers] = useState([]);
+
 	const addBeer = (beer) => {
 		setFavoriteBeers([...favoriteBeers, beer]);
 	};
@@ -13,16 +14,10 @@ export const FavoriteBeersContext = ({ children }) => {
 	};
 
 	return (
-		<FaovriteBeerContext.Provider
+		<FavoriteBeerContext.Provider
 			value={{ favoriteBeers, addBeer, removeBeer }}
 		>
 			{children}
-		</FaovriteBeerContext.Provider>
+		</FavoriteBeerContext.Provider>
 	);
-};
-
-export const useFavoriteBeers = () => {
-	const favoriteBeersState = useContext(FaovriteBeerContext);
-
-	return favoriteBeersState;
 };
