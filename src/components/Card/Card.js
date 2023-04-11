@@ -46,7 +46,7 @@ const Card = ({ beer, favorite, beerIsFav }) => {
 					</button>
 
 					{isModalOpen && (
-						<div className="modal-background" onClick={handleCloseModal} >
+						<div className="modal-background" >
 							<Modal
 								beer={beer}
 								handleCloseModal={handleCloseModal}
