@@ -1,4 +1,4 @@
-const baseUrl = "https://api.punkapi.com/v2/beers";
+import { baseUrl } from "../constants/constants";
 
 export const getAllBeers = async () => {
 	let response = await fetch(`${baseUrl}`);
