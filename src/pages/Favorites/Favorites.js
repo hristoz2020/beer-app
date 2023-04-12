@@ -10,7 +10,9 @@ const Favorites = () => {
 			<h1 className="text-center">Favorites</h1>
 			<div className="d-flex flex-wrap align-items-center justify-content-center">
 				{favoriteBeers.map((beer) => {
-					const beerIsFav = favoriteBeers.some(favBeer => favBeer.id === beer.id);
+					const beerIsFav = favoriteBeers.some(
+						(favBeer) => favBeer.id === beer.id
+					);
 
 					return (
 						<Card

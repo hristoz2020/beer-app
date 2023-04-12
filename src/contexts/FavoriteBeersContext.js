@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useMemo } from "react";
 
 export const FavoriteBeerContext = createContext();
 
@@ -17,9 +17,11 @@ export const FavoriteBeersContext = ({ children }) => {
 		setFavoriteBeers(favoriteBeers.filter(b => b.id !== beer.id));
 	};
 
+	const value = useMemo(() => ({favoriteBeers, addBeer, removeBeer}), [favoriteBeers, addBeer, removeBeer]);
+
 	return (
 		<FavoriteBeerContext.Provider
-			value={{ favoriteBeers, addBeer, removeBeer }}
+			value={value}
 		>
 			{children}
 		</FavoriteBeerContext.Provider>

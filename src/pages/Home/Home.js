@@ -5,11 +5,11 @@ import { getAllBeers } from "../../services/beerServices";
 
 const Home = () => {
 	const [beers, setBeers] = useState([]);
-	const [isLoading, setIsLoading] = useState(false);
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		getAllBeers().then((res) => {
-			setIsLoading(true);
+			setIsLoading(false);
 			setBeers(res);
 		});
 	}, []);
@@ -18,11 +18,10 @@ const Home = () => {
 		<div className="min-height-12  pt-5">
 			<h1 className="text-center">Welcome to beer app !</h1>
 			<div className="d-flex justify-content-center">
-				{isLoading ? (
-					beers.slice(10, 15).map((x) => <Card key={x.id} beer={x} />)
-				) : (
-					<Loader />
-				)}
+				{isLoading && <Loader />}
+				{beers.length > 0 && beers.slice(10, 15).map((x) => (
+					<Card key={x.id} beer={x} />
+				))}
 			</div>
 		</div>
 	);

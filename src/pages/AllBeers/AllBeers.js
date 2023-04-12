@@ -40,27 +40,24 @@ const AllBeers = () => {
 					/>
 				</label>
 			</div>
-			{isLoading ? (
-				<Loader />
-			) : (
-				<div className="d-flex flex-wrap justify-content-center pt-5">
-					{filtredBeers.length > 0 ? (
-						filtredBeers.map((beer) => {
-							const beerIsFav = favoriteBeers.some(favBeer => favBeer.id === beer.id);
-							return (
-								<Card
-									key={beer.id}
-									beer={beer}
-									favorite={true}
-									beerIsFav={beerIsFav}
-								/>
-							);
-						})
-					) : (
-						<h1>Not found beer !</h1>
-					)}
-				</div>
-			)}
+			{isLoading && <Loader />}
+			<div className="d-flex flex-wrap justify-content-center pt-5">
+				{filtredBeers.length > 0 &&
+					filtredBeers.map((beer) => {
+						const beerIsFav = favoriteBeers.some(
+							(favBeer) => favBeer.id === beer.id
+						);
+						return (
+							<Card
+								key={beer.id}
+								beer={beer}
+								favorite={true}
+								beerIsFav={beerIsFav}
+							/>
+						);
+					})}
+				{filtredBeers.length < 1 && <h1>Not found beer !</h1>}
+			</div>
 		</div>
 	);
 };
