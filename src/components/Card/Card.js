@@ -24,8 +24,9 @@ const Card = ({ beer, favorite, beerIsFav }) => {
 		beer.description.length > 70
 			? beer.description.slice(0, 70).concat("...")
 			: beer.description;
-	let name = beer.name.length > 21
-	? beer.name.slice(0, 21).concat("...")
+	let name =
+		beer.name.length > 21
+			? beer.name.slice(0, 21).concat("...")
 			: beer.name;
 
 	return (
@@ -49,7 +50,7 @@ const Card = ({ beer, favorite, beerIsFav }) => {
 					</button>
 
 					{isModalOpen && (
-						<div className="modal-background" >
+						<div className="modal-background">
 							<Modal
 								beer={beer}
 								handleCloseModal={handleCloseModal}
