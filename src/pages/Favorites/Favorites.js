@@ -1,9 +1,9 @@
-import { FavoriteBeerContext } from "../../contexts/FavoriteBeersContext";
+import { BeerContext } from "../../contexts/BeersContext";
 import { useContext } from "react";
 import Card from "../../components/Card/Card";
 
 const Favorites = () => {
-	const { favoriteBeers } = useContext(FavoriteBeerContext);
+	const { favoriteBeers } = useContext(BeerContext);
 
 	return (
 		<div className="min-height-12 pt-5">

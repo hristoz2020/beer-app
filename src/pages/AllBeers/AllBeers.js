@@ -1,21 +1,11 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext, memo } from "react";
 import Card from "../../components/Card/Card";
-import { getAllBeers } from "../../services/beerServices";
 import Loader from "../../components/Loader/Loader";
-import { FavoriteBeerContext } from "../../contexts/FavoriteBeersContext";
+import { BeerContext } from "../../contexts/BeersContext";
 
 const AllBeers = () => {
-	const [beers, setBeers] = useState([]);
-	const [isLoading, setIsLoading] = useState(true);
 	const [searchInput, setSearchInput] = useState("");
-	const { favoriteBeers } = useContext(FavoriteBeerContext);
-
-	useEffect(() => {
-		getAllBeers().then((res) => {
-			setIsLoading(false);
-			setBeers(res);
-		});
-	}, []);
+	const { favoriteBeers, beers } = useContext(BeerContext);
 
 	const onSearch = (e) => {
 		e.preventDefault();
@@ -40,7 +30,7 @@ const AllBeers = () => {
 					/>
 				</label>
 			</div>
-			{isLoading && <Loader />}
+			{beers.length < 1 && <Loader />}
 			<div className="d-flex flex-wrap justify-content-center pt-5">
 				{filtredBeers.length > 0 &&
 					filtredBeers.map((beer) => {
@@ -62,4 +52,4 @@ const AllBeers = () => {
 	);
 };
 
-export default AllBeers;
+export default memo(AllBeers);

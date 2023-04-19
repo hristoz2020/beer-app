@@ -1,6 +1,6 @@
-import { useContext, useState } from "react";
+import { useContext, useState, memo } from "react";
 import Open from "../../assets/sound/open-beer.mp3";
-import { FavoriteBeerContext } from "../../contexts/FavoriteBeersContext";
+import { BeerContext } from "../../contexts/BeersContext";
 import Modal from "../Modal/Modal";
 
 const Card = ({ beer, favorite, beerIsFav }) => {
@@ -8,7 +8,7 @@ const Card = ({ beer, favorite, beerIsFav }) => {
 	const openBeer = () => {
 		openSound.play();
 	};
-	const { addBeer, removeBeer } = useContext(FavoriteBeerContext);
+	const { addBeer, removeBeer } = useContext(BeerContext);
 
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -24,7 +24,6 @@ const Card = ({ beer, favorite, beerIsFav }) => {
 		beer.description.length > 90
 			? beer.description.slice(0, 90).concat("...")
 			: beer.description;
-
 	return (
 		<div className="card w-25 h-25 d-flex align-items-center m-4 border border-4">
 			<img
@@ -81,4 +80,4 @@ const Card = ({ beer, favorite, beerIsFav }) => {
 	);
 };
 
-export default Card;
+export default memo(Card);

@@ -7,7 +7,7 @@ import Random from "./pages/Random/Random";
 import NotFound from "./pages/NotFound/NotFound";
 import Navigation from "./components/Navigation/Navigation";
 import Footer from "./components/Footer/Footer";
-import { FavoriteBeersContext } from "./contexts/FavoriteBeersContext";
+import { FavoriteBeersContext } from "./contexts/BeersContext";
 
 function App() {
 	return (
