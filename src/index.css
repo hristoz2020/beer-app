@@ -8,13 +8,18 @@
 }
 
 .beer-img {
-    width: 280px;
-    height: 500px;
+    width: 180px;
+    height: 300px;
     cursor: pointer;
 }
 
 .beer-img:hover {
     transform: scale(1.1, 1.1);
+}
+
+.card-container {
+    max-width: 280px;
+    max-height: 500px;
 }
 
 .modal {

@@ -21,11 +21,15 @@ const Card = ({ beer, favorite, beerIsFav }) => {
 	};
 
 	let description =
-		beer.description.length > 90
-			? beer.description.slice(0, 90).concat("...")
+		beer.description.length > 70
+			? beer.description.slice(0, 70).concat("...")
 			: beer.description;
+	let name = beer.name.length > 21
+	? beer.name.slice(0, 21).concat("...")
+			: beer.name;
+
 	return (
-		<div className="card w-25 h-25 d-flex align-items-center m-4 border border-4">
+		<div className="card card-container d-flex align-items-center m-4 border border-4">
 			<img
 				src={beer.image_url}
 				className="beer-img p-4"
@@ -33,9 +37,9 @@ const Card = ({ beer, favorite, beerIsFav }) => {
 				onClick={openBeer}
 			/>
 			<div className="card-body">
-				<h5 className="card-title">{beer.name}</h5>
+				<h5 className="card-title">{name}</h5>
 				<p className="mb-0">{description}</p>
-				<div className="d-flex justify-content-between align-items-center">
+				<div className="d-flex justify-content-between align-items-center pt-2">
 					<button
 						type="button"
 						className="btn btn-primary"
