@@ -1,11 +1,9 @@
-import { memo, useState } from "react";
+import { memo, useContext } from "react";
 import Card from "../../components/Card/Card";
 import Loader from "../../components/Loader/Loader";
-import { getAllBeers } from "../../services/beerServices";
-
+import { BeerContext } from "../../contexts/BeersContext";
 const Home = () => {
-	const [beers, setBeers] = useState([]);
-	getAllBeers(1, 50).then((res) => setBeers(res));
+	const { beers } = useContext(BeerContext);
 
 	return (
 		<div className="min-height-12  pt-5">

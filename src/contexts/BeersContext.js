@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { paginationBeers } from "../services/beerServices";
 
 export const BeerContext = createContext();
 
@@ -8,6 +9,21 @@ export const FavoriteBeersContext = ({ children }) => {
 			? JSON.parse(localStorage.getItem("favoriteBeers"))
 			: []
 	);
+
+	const [beers, setBeers] = useState([]);
+
+	useEffect(() => {
+	  async function loadBeers() {
+		const promises = [];
+		for (let i = 1; i <= 5; i++) {
+		  promises.push(paginationBeers(i, 65));
+		}
+		const result = await Promise.all(promises);
+		const flattenedResult = result.flat(); 
+		setBeers(flattenedResult);
+	  }
+	  loadBeers();
+	}, []);
 
 	useEffect(() => {
 		localStorage.setItem("favoriteBeers", JSON.stringify(favoriteBeers));
@@ -24,7 +40,7 @@ export const FavoriteBeersContext = ({ children }) => {
 
 	return (
 		<BeerContext.Provider
-			value={{ favoriteBeers, addBeer, removeBeer }}
+			value={{ beers, favoriteBeers, addBeer, removeBeer }}
 		>
 			{children}
 		</BeerContext.Provider>

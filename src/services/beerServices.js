@@ -1,8 +1,10 @@
 import { baseUrl } from "../constants/constants";
 
-export const getAllBeers = async (page, perPage) => {
-	let response = await fetch(`https://api.punkapi.com/v2/beers?page=${page}&per_page=${perPage}`);
-    let allBeers = response.json();
+export const paginationBeers = async (page, perPage) => {
+	let response = await fetch(
+		`https://api.punkapi.com/v2/beers?page=${page}&per_page=${perPage}`
+	);
+	let allBeers = response.json();
 	return allBeers;
 };
 

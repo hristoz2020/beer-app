@@ -5,8 +5,8 @@ import { BeerContext } from "../../contexts/BeersContext";
 
 const AllBeers = () => {
 	const [searchInput, setSearchInput] = useState("");
-	const { favoriteBeers, beers } = useContext(BeerContext);
-
+	const { beers, favoriteBeers } = useContext(BeerContext);
+	console.log(beers);
 	const onSearch = (e) => {
 		e.preventDefault();
 		setSearchInput(e.target.value);
