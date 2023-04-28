@@ -10,7 +10,7 @@ const AllBeers = () => {
 
 	const [pageNumber, setPageNumber] = useState(0);
 
-	const beersPerPage = 10;
+	const [beersPerPage, setBeersPerPage] = useState(25);
 	const pagesVisited = pageNumber * beersPerPage;
 
 	const onSearch = (e) => {
@@ -44,6 +44,11 @@ const AllBeers = () => {
 		setPageNumber(selected);
 	};
 
+	function handleSelectChange(event) {
+		setBeersPerPage(event.target.value);
+		console.log(event.target.value);
+	}
+
 	return (
 		<div className="min-height-12">
 			<div className="w-25 m-auto p-3">
@@ -64,17 +69,32 @@ const AllBeers = () => {
 				{filtredBeers.length < 1 && <h1>Not found beer !</h1>}
 			</div>
 
-			<ReactPaginate
-				previousLabel={"Previous"}
-				nextLabel={"Next"}
-				pageCount={pageCount}
-				onPageChange={changePage}
-				containerClassName={"paginationBttns"}
-				previousLinkClassName={"previousBttn"}
-				nextLinkClassName={"nextBttn"}
-				disabledClassName={"paginationDisabled"}
-				activeClassName={"paginationActive"}
-			/>
+			{filtredBeers.length > 0 && (
+				<div className="d-flex justify-content-center align-items-center">
+					<h4 className="mb-4">Beers per page:</h4>
+					<select
+						value={beersPerPage}
+						onChange={handleSelectChange}
+						className="mb-4"
+					>
+						<option value="10">10</option>
+						<option value="25">25</option>
+						<option value="50">50</option>
+					</select>
+
+					<ReactPaginate
+						previousLabel={"Previous"}
+						nextLabel={"Next"}
+						pageCount={pageCount}
+						onPageChange={changePage}
+						containerClassName={"paginationBttns"}
+						previousLinkClassName={"previousBttn"}
+						nextLinkClassName={"nextBttn"}
+						disabledClassName={"paginationDisabled"}
+						activeClassName={"paginationActive"}
+					/>
+				</div>
+			)}
 		</div>
 	);
 };
