@@ -10,25 +10,29 @@ export const FavoriteBeersContext = ({ children }) => {
 			: []
 	);
 
-	const [beers, setBeers] = useState([]);
+	const [beers, setBeers] = useState(
+		localStorage.getItem("beers")
+			? JSON.parse(localStorage.getItem("beers"))
+			: []
+	);
 
 	useEffect(() => {
-	  async function loadBeers() {
-		const promises = [];
-		for (let i = 1; i <= 5; i++) {
-		  promises.push(paginationBeers(i, 65));
+		async function loadBeers() {
+			const promises = [];
+			for (let i = 1; i <= 5; i++) {
+				promises.push(paginationBeers(i, 65));
+			}
+			const result = await Promise.all(promises);
+			const flattenedResult = result.flat();
+			setBeers(flattenedResult);
+			localStorage.setItem("beers", JSON.stringify(flattenedResult));
 		}
-		const result = await Promise.all(promises);
-		const flattenedResult = result.flat(); 
-		setBeers(flattenedResult);
-	  }
-	  loadBeers();
+		loadBeers();
 	}, []);
 
 	useEffect(() => {
 		localStorage.setItem("favoriteBeers", JSON.stringify(favoriteBeers));
 	}, [favoriteBeers]);
-
 
 	const addBeer = (beer) => {
 		setFavoriteBeers([...favoriteBeers, beer]);
