@@ -2,11 +2,17 @@ import { useState, useContext, memo } from "react";
 import Card from "../../components/Card/Card";
 import Loader from "../../components/Loader/Loader";
 import { BeerContext } from "../../contexts/BeersContext";
+import ReactPaginate from "react-paginate";
 
 const AllBeers = () => {
 	const [searchInput, setSearchInput] = useState("");
 	const { beers, favoriteBeers } = useContext(BeerContext);
-	console.log(beers);
+
+	const [pageNumber, setPageNumber] = useState(0);
+
+	const beersPerPage = 10;
+	const pagesVisited = pageNumber * beersPerPage;
+
 	const onSearch = (e) => {
 		e.preventDefault();
 		setSearchInput(e.target.value);
@@ -15,6 +21,28 @@ const AllBeers = () => {
 	const filtredBeers = beers.filter((beer) =>
 		beer.name.toLowerCase().includes(searchInput.toLowerCase())
 	);
+
+	const displayBeers = filtredBeers
+		.slice(pagesVisited, pagesVisited + beersPerPage)
+		.map((beer) => {
+			const beerIsFav = favoriteBeers.some(
+				(favBeer) => favBeer.id === beer.id
+			);
+			return (
+				<Card
+					key={beer.id}
+					beer={beer}
+					favorite={true}
+					beerIsFav={beerIsFav}
+				/>
+			);
+		});
+
+	const pageCount = Math.ceil(filtredBeers.length / beersPerPage);
+
+	const changePage = ({ selected }) => {
+		setPageNumber(selected);
+	};
 
 	return (
 		<div className="min-height-12">
@@ -32,22 +60,21 @@ const AllBeers = () => {
 			</div>
 			{beers.length < 1 && <Loader />}
 			<div className="d-flex flex-wrap justify-content-center pt-5">
-				{filtredBeers.length > 0 &&
-					filtredBeers.map((beer) => {
-						const beerIsFav = favoriteBeers.some(
-							(favBeer) => favBeer.id === beer.id
-						);
-						return (
-							<Card
-								key={beer.id}
-								beer={beer}
-								favorite={true}
-								beerIsFav={beerIsFav}
-							/>
-						);
-					})}
+				{filtredBeers.length > 0 && displayBeers}
 				{filtredBeers.length < 1 && <h1>Not found beer !</h1>}
 			</div>
+
+			<ReactPaginate
+				previousLabel={"Previous"}
+				nextLabel={"Next"}
+				pageCount={pageCount}
+				onPageChange={changePage}
+				containerClassName={"paginationBttns"}
+				previousLinkClassName={"previousBttn"}
+				nextLinkClassName={"nextBttn"}
+				disabledClassName={"paginationDisabled"}
+				activeClassName={"paginationActive"}
+			/>
 		</div>
 	);
 };
