@@ -45,8 +45,7 @@ const AllBeers = () => {
 	};
 
 	function handleSelectChange(event) {
-		setBeersPerPage(event.target.value);
-		console.log(event.target.value);
+		setBeersPerPage(Number(event.target.value));
 	}
 
 	return (
