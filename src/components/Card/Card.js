@@ -2,9 +2,10 @@ import { useContext, useState, memo } from "react";
 import Open from "../../assets/sound/open-beer.mp3";
 import { BeerContext } from "../../contexts/BeersContext";
 import Modal from "../Modal/Modal";
+import Beer from "../../assets/images/beer_not_found.png";
 
 const Card = ({ beer, favorite, beerIsFav }) => {
-	let openSound = new Audio(Open);
+	const openSound = new Audio(Open);
 	const openBeer = () => {
 		openSound.play();
 	};
@@ -20,19 +21,21 @@ const Card = ({ beer, favorite, beerIsFav }) => {
 		setIsModalOpen(false);
 	};
 
-	let description =
+	const description =
 		beer.description.length > 70
 			? beer.description.slice(0, 70).concat("...")
 			: beer.description;
-	let name =
+	const name =
 		beer.name.length > 21
 			? beer.name.slice(0, 21).concat("...")
 			: beer.name;
 
+	const beerImg = beer.image_url === null ? Beer : beer.image_url;
+
 	return (
 		<div className="card card-container d-flex align-items-center m-4 border border-4">
 			<img
-				src={beer.image_url}
+				src={beerImg}
 				className="beer-img p-4"
 				alt="beer"
 				onClick={openBeer}
