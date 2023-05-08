@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 const Navigation = () => (
-	<nav className="navbar navbar-expand-lg text-light bg-dark p-2">
+	<nav className="navbar navbar-expand-lg text-light bg-dark p-1">
 		<div className="">
 			<Link className="navbar-brand text-light" to="/">
 				Punk API
