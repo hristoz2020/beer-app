@@ -1,4 +1,4 @@
-import { useState, useContext, memo } from "react";
+import { useState, useContext, memo, useMemo } from "react";
 import Card from "../../components/Card/Card";
 import Loader from "../../components/Loader/Loader";
 import { BeerContext } from "../../contexts/BeersContext";
@@ -18,8 +18,11 @@ const AllBeers = () => {
 		setSearchInput(e.target.value);
 	};
 
-	const filtredBeers = beers.filter((beer) =>
-		beer.name.toLowerCase().includes(searchInput.toLowerCase())
+	const filtredBeers = useMemo(
+		() => beers.filter((beer) =>
+				beer.name.toLowerCase().includes(searchInput.toLowerCase())
+			),
+		[beers, searchInput]
 	);
 
 	const displayBeers = filtredBeers
@@ -38,7 +41,7 @@ const AllBeers = () => {
 			);
 		});
 
-	const pageCount = Math.ceil(filtredBeers.length / beersPerPage);
+	const pagesCount = Math.ceil(filtredBeers.length / beersPerPage);
 
 	const changePage = ({ selected }) => {
 		setPageNumber(selected);
@@ -84,7 +87,7 @@ const AllBeers = () => {
 					<ReactPaginate
 						previousLabel={"Previous"}
 						nextLabel={"Next"}
-						pageCount={pageCount}
+						pageCount={pagesCount}
 						onPageChange={changePage}
 						containerClassName={"paginationBttns"}
 						previousLinkClassName={"previousBttn"}

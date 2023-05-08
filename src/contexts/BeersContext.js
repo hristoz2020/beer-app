@@ -17,17 +17,17 @@ export const FavoriteBeersContext = ({ children }) => {
 	);
 
 	useEffect(() => {
-		async function loadBeers() {
-			const promises = [];
+		async function getBeers() {
+			let response = [];
 			for (let i = 1; i <= 5; i++) {
-				promises.push(paginationBeers(i, 65));
+				response.push(paginationBeers(i, 65));
 			}
-			const result = await Promise.all(promises);
-			const flattenedResult = result.flat();
+			response = await Promise.all(response);
+			const flattenedResult = response.flat();
 			setBeers(flattenedResult);
 			localStorage.setItem("beers", JSON.stringify(flattenedResult));
 		}
-		loadBeers();
+		getBeers();
 	}, []);
 
 	useEffect(() => {

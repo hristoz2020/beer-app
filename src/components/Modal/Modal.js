@@ -24,10 +24,10 @@ const Modal = ({ beer, handleCloseModal }) => (
 					<h3 className="shadow p-3 mb-3 bg-light rounded">
 						{beer.name}
 					</h3>
-					<h4 className="">{beer.tagline}</h4>
-					<h4 className="">{beer.description}</h4>
-					<h4 className="">First Brewed: {beer.first_brewed}</h4>
-					<h4 className="">ph: {beer.ph}</h4>
+					<h4>{beer.tagline}</h4>
+					<h4>{beer.description}</h4>
+					<h4>First Brewed: {beer.first_brewed}</h4>
+					<h4>ph: {beer.ph}</h4>
 					<h4>Food Pairing: </h4>
 					<ul className="list-group list-group-flush">
 						{beer.food_pairing.map((food, index) => (
