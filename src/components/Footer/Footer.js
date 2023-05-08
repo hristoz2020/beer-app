@@ -1,34 +1,20 @@
 import { Link } from "react-router-dom";
 
 const Footer = () => (
-	<footer className="p-3 bg-dark text-light">
-		<div className="d-flex justify-content-between">
+	<footer className="bg-dark text-light">
+		<div className="p-2 d-flex justify-content-between align-items-center">
 			<div>
-				<span>LOGO</span>
+				<span>PUNK API</span>
 			</div>
 			<div className="copyright">
-				<p>
-					developed and maintained by <Link to="/">company</Link>
-				</p>
+				<span>© All rights reserved</span>
 			</div>
 			<div>
-				<ul className="d-flex gap-3 list-unstyled">
-					<li>
-						<Link to="https://github.com/hristoz2020">
-							<i className="bi text-light bi-github"></i>
-						</Link>
-					</li>
-					<li>
-						<Link to="/">
-							<i className="bi text-light bi-twitter"></i>
-						</Link>
-					</li>
-					<li>
-						<Link to="/">
-							<i className="bi text-light bi-linkedin"></i>
-						</Link>
-					</li>
-				</ul>
+				<span>
+					<Link to="https://github.com/hristoz2020">
+						<i className="bi text-light bi-github"></i>
+					</Link>
+				</span>
 			</div>
 		</div>
 	</footer>
