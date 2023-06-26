@@ -72,8 +72,8 @@ const AllBeers = () => {
 			</div>
 
 			{filtredBeers.length > 0 && (
-				<div className="d-flex justify-content-center align-items-center">
-					<h4 className="mb-4">Beers per page:</h4>
+				<div className="d-flex justify-content-center align-items-center flex-wrap">
+					<h4 className="mb-4 me-1 pb-1">Beers per page:</h4>
 					<select
 						value={beersPerPage}
 						onChange={handleSelectChange}

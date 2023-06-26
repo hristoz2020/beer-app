@@ -2,6 +2,7 @@ import { memo, useContext } from "react";
 import Card from "../../components/Card/Card";
 import Loader from "../../components/Loader/Loader";
 import { BeerContext } from "../../contexts/BeersContext";
+
 const Home = () => {
 	const { beers } = useContext(BeerContext);
 
@@ -10,10 +11,15 @@ const Home = () => {
 			<h1 className="text-center">Welcome to beer app !</h1>
 			<div className="d-flex justify-content-center">
 				{beers.length <= 0 && <Loader />}
-				{beers.length > 0 &&
-					beers
-						.slice(10, 15)
-						.map((x) => <Card key={x.id} beer={x} />)}
+				{beers.length > 0 && (
+					<div className="row d-flex justify-content-center">
+						{beers.slice(10, 15).map((x) => (
+							<div className="col-md-4 justify-content-center d-flex" key={x.id}>
+								<Card beer={x} />
+							</div>
+						))}
+					</div>
+				)}
 			</div>
 		</div>
 	);
