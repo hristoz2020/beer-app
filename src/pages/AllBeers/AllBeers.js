@@ -1,7 +1,7 @@
 import { useState, useContext, memo, useMemo } from "react";
+import { BeerContext } from "../../contexts/BeersContext";
 import Card from "../../components/Card/Card";
 import Loader from "../../components/Loader/Loader";
-import { BeerContext } from "../../contexts/BeersContext";
 import ReactPaginate from "react-paginate";
 
 const AllBeers = () => {
@@ -19,7 +19,8 @@ const AllBeers = () => {
 	};
 
 	const filtredBeers = useMemo(
-		() => beers.filter((beer) =>
+		() =>
+			beers.filter((beer) =>
 				beer.name.toLowerCase().includes(searchInput.toLowerCase())
 			),
 		[beers, searchInput]
@@ -72,30 +73,33 @@ const AllBeers = () => {
 			</div>
 
 			{filtredBeers.length > 0 && (
-				<div className="d-flex justify-content-center align-items-center flex-wrap">
-					<h4 className="mb-4 me-1 pb-1">Beers per page:</h4>
-					<select
-						value={beersPerPage}
-						onChange={handleSelectChange}
-						className="mb-4"
-					>
-						<option value="10">10</option>
-						<option value="25">25</option>
-						<option value="50">50</option>
-					</select>
-
-					<ReactPaginate
-						previousLabel={"Previous"}
-						nextLabel={"Next"}
-						pageCount={pagesCount}
-						onPageChange={changePage}
-						containerClassName={"paginationBttns"}
-						previousLinkClassName={"previousBttn"}
-						nextLinkClassName={"nextBttn"}
-						disabledClassName={"paginationDisabled"}
-						activeClassName={"paginationActive"}
-					/>
-				</div>
+				<>
+					<div className="d-flex justify-content-center align-items-center">
+						<h4 className="mb-4 me-1 pb-1">Beers per page:</h4>
+						<select
+							value={beersPerPage}
+							onChange={handleSelectChange}
+							className="mb-4 p-1"
+						>
+							<option value="10">10</option>
+							<option value="25">25</option>
+							<option value="50">50</option>
+						</select>
+					</div>
+					<div className="d-flex justify-content-center align-items-center flex-wrap">
+						<ReactPaginate
+							previousLabel={"Previous"}
+							nextLabel={"Next"}
+							pageCount={pagesCount}
+							onPageChange={changePage}
+							containerClassName={"paginationBttns"}
+							previousLinkClassName={"previousBttn"}
+							nextLinkClassName={"nextBttn"}
+							disabledClassName={"paginationDisabled"}
+							activeClassName={"paginationActive"}
+						/>
+					</div>
+				</>
 			)}
 		</div>
 	);

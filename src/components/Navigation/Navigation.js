@@ -12,6 +12,29 @@ const Navigation = () => {
 		setIsMenuOpen(false);
 	};
 
+	const routes = [
+		{
+			id: 0,
+			path: "/beer-app",
+			title: "Home",
+		},
+		{
+			id: 1,
+			path: "/favorites",
+			title: "Favorites",
+		},
+		{
+			id: 2,
+			path: "/beers",
+			title: "Beers",
+		},
+		{
+			id: 3,
+			path: "/random",
+			title: "Random Beer",
+		},
+	];
+
 	return (
 		<nav className="navbar navbar-expand-lg navbar-dark bg-dark p-1">
 			<div className="container">
@@ -39,42 +62,17 @@ const Navigation = () => {
 					id="navbarNav"
 				>
 					<ul className="navbar-nav ms-auto">
-						<li className="nav-item">
-							<Link
-								className="nav-link"
-								to="/beer-app"
-								onClick={handleMenuOptionClick}
-							>
-								Home
-							</Link>
-						</li>
-						<li className="nav-item">
-							<Link
-								className="nav-link"
-								to="/favorites"
-								onClick={handleMenuOptionClick}
-							>
-								Favorites
-							</Link>
-						</li>
-						<li className="nav-item">
-							<Link
-								className="nav-link"
-								to="/beers"
-								onClick={handleMenuOptionClick}
-							>
-								Beers
-							</Link>
-						</li>
-						<li className="nav-item">
-							<Link
-								className="nav-link"
-								to="/random"
-								onClick={handleMenuOptionClick}
-							>
-								Random Beer
-							</Link>
-						</li>
+						{routes.map((liItem) => (
+							<li className="nav-item" key={liItem.id}>
+								<Link
+									className="nav-link"
+									to={liItem.path}
+									onClick={handleMenuOptionClick}
+								>
+									{liItem.title}
+								</Link>
+							</li>
+						))}
 					</ul>
 				</div>
 			</div>

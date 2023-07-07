@@ -1,7 +1,7 @@
 import { useContext, useState, memo } from "react";
-import Open from "../../assets/sound/open-beer.mp3";
 import { BeerContext } from "../../contexts/BeersContext";
 import Modal from "../Modal/Modal";
+import Open from "../../assets/sound/open-beer.mp3";
 import Beer from "../../assets/images/beer_not_found.png";
 
 const Card = ({ beer, favorite, beerIsFav }) => {
@@ -21,16 +21,21 @@ const Card = ({ beer, favorite, beerIsFav }) => {
 		setIsModalOpen(false);
 	};
 
-	const description =
-		beer.description.length > 70
-			? beer.description.slice(0, 70).concat("...")
-			: beer.description;
-	const name =
-		beer.name.length > 21
-			? beer.name.slice(0, 21).concat("...")
-			: beer.name;
+	const handleRemoveBeer = () => {
+		removeBeer(beer);
+	};
 
+	const handleAddBeer = () => {
+		addBeer(beer);
+	};
+
+	const editText = (text, maxLength) =>
+		text.length > maxLength ? text.slice(0, maxLength).concat("...") : text;
+	const description = editText(beer.description, 70);
+	const name = editText(beer.name, 21);
 	const beerImg = beer.image_url === null ? Beer : beer.image_url;
+	const handleFavorite = beerIsFav ? handleRemoveBeer : handleAddBeer;
+	const handleFavoriteIcon = beerIsFav ? "fa-solid" : "fa-regular";
 
 	return (
 		<div className="card card-container d-flex align-items-center m-4 border border-4">
@@ -63,23 +68,11 @@ const Card = ({ beer, favorite, beerIsFav }) => {
 
 					{favorite && (
 						<div className="border-none">
-							{beerIsFav ? (
-								<span
-									onClick={() => {
-										removeBeer(beer);
-									}}
-								>
-									<i className="fa-solid fa-heart text-danger fs-3"></i>
-								</span>
-							) : (
-								<span
-									onClick={() => {
-										addBeer(beer);
-									}}
-								>
-									<i className="fa-regular fa-heart text-danger fs-3"></i>
-								</span>
-							)}
+							<span onClick={handleFavorite}>
+								<i
+									className={`${handleFavoriteIcon} fa-heart text-danger fs-3`}
+								></i>
+							</span>
 						</div>
 					)}
 				</div>

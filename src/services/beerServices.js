@@ -2,7 +2,7 @@ import { baseUrl } from "../constants/constants";
 
 export const paginationBeers = async (page, perPage) => {
 	let response = await fetch(
-		`https://api.punkapi.com/v2/beers?page=${page}&per_page=${perPage}`
+		`${baseUrl}?page=${page}&per_page=${perPage}`
 	);
 
 	return response.json();

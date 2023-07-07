@@ -1,10 +1,16 @@
 import { memo, useContext } from "react";
+import { BeerContext } from "../../contexts/BeersContext";
 import Card from "../../components/Card/Card";
 import Loader from "../../components/Loader/Loader";
-import { BeerContext } from "../../contexts/BeersContext";
 
 const Home = () => {
 	const { beers } = useContext(BeerContext);
+
+	const displayBeers = beers.slice(10, 15).map((x) => (
+		<div className="col-md-4 justify-content-center d-flex" key={x.id}>
+			<Card beer={x} />
+		</div>
+	));
 
 	return (
 		<div className="min-height-12  pt-5">
@@ -13,11 +19,7 @@ const Home = () => {
 				{beers.length <= 0 && <Loader />}
 				{beers.length > 0 && (
 					<div className="row d-flex justify-content-center">
-						{beers.slice(10, 15).map((x) => (
-							<div className="col-md-4 justify-content-center d-flex" key={x.id}>
-								<Card beer={x} />
-							</div>
-						))}
+						{displayBeers}
 					</div>
 				)}
 			</div>
